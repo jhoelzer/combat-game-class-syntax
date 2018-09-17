@@ -109,17 +109,11 @@ if (bulletChoice === "silver" || bulletChoice === "iron") {
 }
 
 // displays the user's chosen bullet/weapon
-Creature.prototype.weapon = function() {
-    let elementChoice = document.createElement("div");
-    let resultChoice = document.createTextNode(weaponChoice);
-    elementChoice.appendChild(resultChoice);
-    let placeChoice = document.getElementById("choice");
-    placeChoice.appendChild(elementChoice);
-}
-let heroNew = new Creature("weapon");
-heroNew.weapon();
-
-
+let elementChoice = document.createElement("div");
+let resultChoice = document.createTextNode(weaponChoice);
+elementChoice.appendChild(resultChoice);
+let placeChoice = document.getElementById("choice");
+placeChoice.appendChild(elementChoice);
 
 // if no monster is provided
 function battle (hero, ...monsters) {
@@ -137,42 +131,30 @@ function battle (hero, ...monsters) {
         
         // to make sure winning text works for both the plural heroes and the singular monsters
         let winner;
-        Creature.prototype.victory = function() {
-            if (hero.health > 0) {
-                winner = hero.name + " are the victors";
-            } else if (monster.health > 0) {
-                winner = monster.name + " is the victor";
-            } else if (hero.health <= 0 && monster.health <= 0) {
-                winner = "Both died";
-            }
+        if (hero.health > 0) {
+            winner = hero.name + " are the victors";
+        } else if (monster.health > 0) {
+            winner = monster.name + " is the victor";
+        } else if (hero.health <= 0 && monster.health <= 0) {
+            winner = "Both died";
         }
-        let result = new Creature("victory")
-        result.victory();
 
         console.log(`${hero.name} are at ${hero.health} health and ${monster.name} is at ${monster.health} health`);
         console.log(winner);
         
         // Final Stats
-        Creature.prototype.stats = function() {
-            let element = document.createElement("div");
-            let result = document.createTextNode(`${hero.name} are at ${hero.health} health and ${monster.name} is at ${monster.health} health`);
-            element.appendChild(result);
-            let place = document.getElementById("main");
-            place.appendChild(element);
-        }
-        let finalStats = new Creature("stats");
-        finalStats.stats();
+        let element = document.createElement("div");
+        let result = document.createTextNode(`${hero.name} are at ${hero.health} health and ${monster.name} is at ${monster.health} health`);
+        element.appendChild(result);
+        let place = document.getElementById("main");
+        place.appendChild(element);
 
         // Winning Text
-        Creature.prototype.winning = function() {
-            let elementWin = document.createElement("div");
-            let resultWin = document.createTextNode(winner);
-            elementWin.appendChild(resultWin);
-            let placeWin = document.getElementById("main");
-            placeWin.appendChild(elementWin);
-        }
-        let winningText = new Creature("winning");
-        winningText.winning();
+        let elementWin = document.createElement("div");
+        let resultWin = document.createTextNode(winner);
+        elementWin.appendChild(resultWin);
+        let placeWin = document.getElementById("main");
+        placeWin.appendChild(elementWin);
     })
 }
 
